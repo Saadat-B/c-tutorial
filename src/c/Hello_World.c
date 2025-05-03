@@ -1,17 +1,21 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-void printNumbers(int start, int end)
+typedef struct
 {
-    if (start > end)
-        return;
-    for (int i = start; i <= end; i++)
-    {
-        printf("%d\n", i);
-    }
+    int x;
+    int y;
+} Point;
+
+void printPoint(Point p)
+{
+    printf("Point from function: (%d, %d)\n", p.x, p.y);
 }
 
 int main()
 {
-    printNumbers(0, 10);
+
+    Point p = {5, 15};
+    printPoint(p);
+
+    return 0;
 }
