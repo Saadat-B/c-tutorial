@@ -1,17 +1,14 @@
 #include <stdio.h>
+#include <stdbool.h>
 
-float max_sneklang_memory(int max_threads, int memory_per_thread)
-{
-
-    return (float)(max_threads * memory_per_thread);
-}
 
 int main()
 {
-
-    float max_memory = max_sneklang_memory(4, 512);
-
-    printf("Max memory %f\n", max_memory);
-
+    printf("sizeof bool is %zu byte\n", sizeof(bool));
+    printf("sizeof int is %zu byte\n", sizeof(int));
+    printf("sizeof float is %zu byte\n", sizeof(float));
+    printf("sizeof double is %zu byte\n", sizeof(double));
+    printf("sizeof size_t is %zu byte\n", sizeof(size_t));
+    printf("sizeof long is %zu byte\n", sizeof(long));
     return 0;
 }
