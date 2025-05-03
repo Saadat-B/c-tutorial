@@ -1,17 +1,17 @@
 #include <stdio.h>
 
+float max_sneklang_memory(int max_threads, int memory_per_thread)
+{
+
+    return (float)(max_threads * memory_per_thread);
+}
+
 int main()
 {
 
-    int num = 1;
-    float fl = 0.1;
-    char egChar = 'c';
-    char *str = "this is a string";
+    float max_memory = max_sneklang_memory(4, 512);
 
-    printf("this is an integer %d\n", num);
-    printf("this is a character %c\n", egChar);
-    printf("this is a string made using char* pointer %s\n", str);
-    printf("this is a float %f\n", fl);
+    printf("Max memory %f\n", max_memory);
 
     return 0;
 }
