@@ -1,21 +1,32 @@
 #include <stdio.h>
 
-typedef struct
+void my_strcat(char *str1, const char *str2)
 {
-    int x;
-    int y;
-} Point;
+    // Move to the end of str1
+    while (*str1 != '\0')
+    {
+        str1++;
+    }
 
-void printPoint(Point p)
-{
-    printf("Point from function: (%d, %d)\n", p.x, p.y);
+    // Copy str2 to the end of str1
+    while (*str2 != '\0')
+    {
+        *str1 = *str2;
+        str1++;
+        str2++;
+    }
+
+    *str1 = '\0'; // Null-terminate the final string
 }
 
 int main()
 {
+    char str1[100] = "Hello, ";
+    char str2[] = "world!";
 
-    Point p = {5, 15};
-    printPoint(p);
+    my_strcat(str1, str2);
+
+    printf("Result: %s\n", str1); // Output: Hello, world!
 
     return 0;
 }
