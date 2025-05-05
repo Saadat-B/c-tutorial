@@ -12,6 +12,11 @@ int smart_append(TextBuffer *dest, const char *src);
 int smart_append(TextBuffer *dest, const char *src)
 {
 
+    if (!dest || !src)
+    {
+        return 1;
+    }
+
     const size_t MAX_BUFFER_SIZE = 64;
     size_t space_left = MAX_BUFFER_SIZE - dest->length - 1;
     size_t src_len = strlen(src);
