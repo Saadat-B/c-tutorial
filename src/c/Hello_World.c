@@ -1,32 +1,47 @@
+#include <string.h>
 #include <stdio.h>
 
-void my_strcat(char *str1, const char *str2)
+typedef struct
 {
-    // Move to the end of str1
-    while (*str1 != '\0')
+    size_t length;
+    char buffer[64];
+} TextBuffer;
+
+int smart_append(TextBuffer *dest, const char *src);
+
+int smart_append(TextBuffer *dest, const char *src)
+{
+
+    const size_t MAX_BUFFER_SIZE = 64;
+    size_t space_left = MAX_BUFFER_SIZE - dest->length - 1;
+    size_t src_len = strlen(src);
+
+    if (src_len > space_left)
     {
-        str1++;
+
+        strncat(dest->buffer, src, space_left);
+        dest->length = MAX_BUFFER_SIZE - 1;
+        dest->buffer[MAX_BUFFER_SIZE - 1] = '\0';
+
+        return 1;
     }
 
-    // Copy str2 to the end of str1
-    while (*str2 != '\0')
-    {
-        *str1 = *str2;
-        str1++;
-        str2++;
-    }
+    strcat(dest->buffer, src);
+    dest->length += src_len;
 
-    *str1 = '\0'; // Null-terminate the final string
+    return 0;
 }
 
 int main()
 {
-    char str1[100] = "Hello, ";
-    char str2[] = "world!";
 
-    my_strcat(str1, str2);
+    TextBuffer dest = {.length = 6, .buffer = "Hello "};
 
-    printf("Result: %s\n", str1); // Output: Hello, world!
+    const char *src = "world";
+
+    smart_append(&dest, src);
+
+    printf("Smart append result - length: %zu ,buffer: %s \n", dest.length, dest.buffer);
 
     return 0;
 }
